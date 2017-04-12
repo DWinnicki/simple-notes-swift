@@ -9,10 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var number: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // error2
+        // error
         // Do any additional setup after loading the view, typically from a nib.
     }
 
