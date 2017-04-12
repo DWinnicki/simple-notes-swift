@@ -17,7 +17,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var people: String!
+        var _: String!
+        
+        var _: Int!
         
     }
 
@@ -26,6 +28,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func testFunc() -> Void {
+        // Empty func
+    }
 
 }
 
