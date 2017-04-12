@@ -12,11 +12,13 @@ class ViewController: UIViewController {
     
     var number: Int!
     var name: String!
-    var apple: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        var people: String!
+        
     }
 
     override func didReceiveMemoryWarning() {
