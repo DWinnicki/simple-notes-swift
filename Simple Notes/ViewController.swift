@@ -12,9 +12,10 @@ class ViewController: UIViewController {
     
     var number: Int!
 
+    var test: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // error
         // Do any additional setup after loading the view, typically from a nib.
     }
 
