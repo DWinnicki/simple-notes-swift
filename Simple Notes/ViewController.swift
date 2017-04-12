@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var number: Int!
-
-    var test: String!
+    var name: String!
+    var apple: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
