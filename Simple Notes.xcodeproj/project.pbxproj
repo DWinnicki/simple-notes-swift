@@ -7,8 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CBAE68A51E9F3ED200DA634B /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE689F1E9F3ED200DA634B /* Note+CoreDataClass.swift */; };
+		CBAE68A61E9F3ED200DA634B /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68A01E9F3ED200DA634B /* Note+CoreDataProperties.swift */; };
+		CBAE68A71E9F3ED200DA634B /* Authentication+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68A11E9F3ED200DA634B /* Authentication+CoreDataClass.swift */; };
+		CBAE68A81E9F3ED200DA634B /* Authentication+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68A21E9F3ED200DA634B /* Authentication+CoreDataProperties.swift */; };
+		CBAE68A91E9F3ED200DA634B /* TextNote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68A31E9F3ED200DA634B /* TextNote+CoreDataClass.swift */; };
+		CBAE68AA1E9F3ED200DA634B /* TextNote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68A41E9F3ED200DA634B /* TextNote+CoreDataProperties.swift */; };
+		CBAE68AC1E9F3FD200DA634B /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68AB1E9F3FD200DA634B /* MainTableViewController.swift */; };
+		CBAE68AE1E9F40AA00DA634B /* CreateTextNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68AD1E9F40AA00DA634B /* CreateTextNoteViewController.swift */; };
+		CBAE68B01E9F40E700DA634B /* SelectNoteTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68AF1E9F40E700DA634B /* SelectNoteTypeViewController.swift */; };
+		CBAE68B21E9F40FA00DA634B /* ViewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAE68B11E9F40FA00DA634B /* ViewNoteViewController.swift */; };
 		E3B857F71E9EA09B00A4F8A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B857F61E9EA09B00A4F8A8 /* AppDelegate.swift */; };
-		E3B857F91E9EA09B00A4F8A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B857F81E9EA09B00A4F8A8 /* ViewController.swift */; };
 		E3B857FC1E9EA09B00A4F8A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B857FA1E9EA09B00A4F8A8 /* Main.storyboard */; };
 		E3B857FF1E9EA09B00A4F8A8 /* Simple_Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3B857FD1E9EA09B00A4F8A8 /* Simple_Notes.xcdatamodeld */; };
 		E3B858011E9EA09B00A4F8A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B858001E9EA09B00A4F8A8 /* Assets.xcassets */; };
@@ -35,9 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CBAE689F1E9F3ED200DA634B /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataClass.swift"; path = "../Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CBAE68A01E9F3ED200DA634B /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataProperties.swift"; path = "../Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CBAE68A11E9F3ED200DA634B /* Authentication+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Authentication+CoreDataClass.swift"; path = "../Authentication+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CBAE68A21E9F3ED200DA634B /* Authentication+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Authentication+CoreDataProperties.swift"; path = "../Authentication+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CBAE68A31E9F3ED200DA634B /* TextNote+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TextNote+CoreDataClass.swift"; path = "../TextNote+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CBAE68A41E9F3ED200DA634B /* TextNote+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TextNote+CoreDataProperties.swift"; path = "../TextNote+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CBAE68AB1E9F3FD200DA634B /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		CBAE68AD1E9F40AA00DA634B /* CreateTextNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTextNoteViewController.swift; sourceTree = "<group>"; };
+		CBAE68AF1E9F40E700DA634B /* SelectNoteTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectNoteTypeViewController.swift; sourceTree = "<group>"; };
+		CBAE68B11E9F40FA00DA634B /* ViewNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewNoteViewController.swift; sourceTree = "<group>"; };
 		E3B857F31E9EA09B00A4F8A8 /* Simple Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B857F61E9EA09B00A4F8A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3B857F81E9EA09B00A4F8A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3B857FB1E9EA09B00A4F8A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3B857FE1E9EA09B00A4F8A8 /* Simple_Notes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Simple_Notes.xcdatamodel; sourceTree = "<group>"; };
 		E3B858001E9EA09B00A4F8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +94,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CBAE687E1E9F377A00DA634B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E3B857F61E9EA09B00A4F8A8 /* AppDelegate.swift */,
+				E3B858051E9EA09B00A4F8A8 /* Info.plist */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		CBAE687F1E9F378100DA634B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E3B857FA1E9EA09B00A4F8A8 /* Main.storyboard */,
+				E3B858001E9EA09B00A4F8A8 /* Assets.xcassets */,
+				E3B858021E9EA09B00A4F8A8 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CBAE68811E9F379A00DA634B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CBAE68AB1E9F3FD200DA634B /* MainTableViewController.swift */,
+				CBAE68AD1E9F40AA00DA634B /* CreateTextNoteViewController.swift */,
+				CBAE68AF1E9F40E700DA634B /* SelectNoteTypeViewController.swift */,
+				CBAE68B11E9F40FA00DA634B /* ViewNoteViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		CBAE68821E9F379F00DA634B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBAE689F1E9F3ED200DA634B /* Note+CoreDataClass.swift */,
+				CBAE68A01E9F3ED200DA634B /* Note+CoreDataProperties.swift */,
+				CBAE68A11E9F3ED200DA634B /* Authentication+CoreDataClass.swift */,
+				CBAE68A21E9F3ED200DA634B /* Authentication+CoreDataProperties.swift */,
+				CBAE68A31E9F3ED200DA634B /* TextNote+CoreDataClass.swift */,
+				CBAE68A41E9F3ED200DA634B /* TextNote+CoreDataProperties.swift */,
+				E3B857FD1E9EA09B00A4F8A8 /* Simple_Notes.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		E3B857EA1E9EA09B00A4F8A8 = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +161,10 @@
 		E3B857F51E9EA09B00A4F8A8 /* Simple Notes */ = {
 			isa = PBXGroup;
 			children = (
-				E3B857F61E9EA09B00A4F8A8 /* AppDelegate.swift */,
-				E3B857F81E9EA09B00A4F8A8 /* ViewController.swift */,
-				E3B857FA1E9EA09B00A4F8A8 /* Main.storyboard */,
-				E3B858001E9EA09B00A4F8A8 /* Assets.xcassets */,
-				E3B858021E9EA09B00A4F8A8 /* LaunchScreen.storyboard */,
-				E3B858051E9EA09B00A4F8A8 /* Info.plist */,
-				E3B857FD1E9EA09B00A4F8A8 /* Simple_Notes.xcdatamodeld */,
+				CBAE687E1E9F377A00DA634B /* Main */,
+				CBAE687F1E9F378100DA634B /* Views */,
+				CBAE68811E9F379A00DA634B /* Controller */,
+				CBAE68821E9F379F00DA634B /* Model */,
 			);
 			path = "Simple Notes";
 			sourceTree = "<group>";
@@ -265,9 +324,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B857F91E9EA09B00A4F8A8 /* ViewController.swift in Sources */,
+				CBAE68A71E9F3ED200DA634B /* Authentication+CoreDataClass.swift in Sources */,
+				CBAE68A51E9F3ED200DA634B /* Note+CoreDataClass.swift in Sources */,
+				CBAE68AA1E9F3ED200DA634B /* TextNote+CoreDataProperties.swift in Sources */,
+				CBAE68B01E9F40E700DA634B /* SelectNoteTypeViewController.swift in Sources */,
+				CBAE68A81E9F3ED200DA634B /* Authentication+CoreDataProperties.swift in Sources */,
+				CBAE68AC1E9F3FD200DA634B /* MainTableViewController.swift in Sources */,
 				E3B857F71E9EA09B00A4F8A8 /* AppDelegate.swift in Sources */,
+				CBAE68B21E9F40FA00DA634B /* ViewNoteViewController.swift in Sources */,
 				E3B857FF1E9EA09B00A4F8A8 /* Simple_Notes.xcdatamodeld in Sources */,
+				CBAE68AE1E9F40AA00DA634B /* CreateTextNoteViewController.swift in Sources */,
+				CBAE68A91E9F3ED200DA634B /* TextNote+CoreDataClass.swift in Sources */,
+				CBAE68A61E9F3ED200DA634B /* Note+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
