@@ -16,11 +16,11 @@ extension Note {
         return NSFetchRequest<Note>(entityName: "Note");
     }
 
+    @NSManaged public var date: NSDate?
     @NSManaged public var id: Int16
+    @NSManaged public var passwordProtected: Bool
     @NSManaged public var title: String?
     @NSManaged public var type: NSObject?
-    @NSManaged public var passwordProtected: Bool
-    @NSManaged public var date: NSDate?
     @NSManaged public var authentication: Authentication?
 
 }

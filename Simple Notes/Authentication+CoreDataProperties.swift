@@ -16,9 +16,9 @@ extension Authentication {
         return NSFetchRequest<Authentication>(entityName: "Authentication");
     }
 
-    @NSManaged public var question: String?
     @NSManaged public var answer: String?
     @NSManaged public var password: String?
+    @NSManaged public var question: String?
     @NSManaged public var note: NSSet?
 
 }
