@@ -22,5 +22,13 @@ extension Note {
     @NSManaged public var title: String?
     @NSManaged public var type: NSObject?
     @NSManaged public var authentication: Authentication?
+    
+    public func getDate() -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = DateFormatter.Style.short
+        dateformatter.timeStyle = DateFormatter.Style.short
+        let dateStr = dateformatter.string(from: date as! Date)
+        return dateStr
+    }
 
 }

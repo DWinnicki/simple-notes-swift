@@ -1,17 +1,39 @@
 //
-//  ViewNoteViewController.swift
+//  DetailViewController.swift
 //  Simple Notes
 //
-//  Created by Karl J. Villeneuve on 2017-04-13.
+//  Created by Karl J. Villeneuve on 2017-04-14.
 //  Copyright © 2017 Winnicki. All rights reserved.
 //
 
 import UIKit
 
-class ViewNoteViewController: UIViewController {
+class DetailViewController: UIViewController {
+    @IBOutlet weak var noteTitleLabel: UILabel!
+    @IBOutlet weak var noteTextLabel: UILabel!
+    
+    var textNote: TextNote? {
+        didSet {
+            configureView()
+        }
+        
+    }
+    
+    func configureView() {
+        if let textNote = textNote {
+            if let noteTitleLabel = noteTitleLabel, let noteTextLabel = noteTextLabel {
+                noteTitleLabel.text = textNote.title
+                noteTextLabel.text = textNote.text
+                title = textNote.title
+            }
+        }
+    }
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
 
         // Do any additional setup after loading the view.
     }
