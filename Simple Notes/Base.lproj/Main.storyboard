@@ -10,14 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Main Table View Controller-->
         <scene sceneID="ssE-92-FHO">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="CRz-1U-OF2" customClass="MainTableViewController" customModule="Simple_Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vDE-nJ-E3e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="65" id="DNy-UW-e5z" customClass="CellTableViewCell" customModule="Simple_Notes" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="65"/>
@@ -88,20 +90,63 @@
                             <outlet property="delegate" destination="CRz-1U-OF2" id="ur5-YL-si5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Hrx-gb-eUb"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <toolbarItems>
+                        <barButtonItem title="notes" id="UCD-Ip-9lr">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Cek-rN-SkZ"/>
+                        <barButtonItem title="Security" id="2FZ-0c-igq">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="Hrx-gb-eUb"/>
+                    <connections>
+                        <outlet property="noteCountFooter" destination="UCD-Ip-9lr" id="lE5-YF-TBD"/>
+                        <segue destination="o8h-OD-CwY" kind="show" identifier="createNote" id="UOL-8n-jZ0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYa-zy-xrr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1961" y="-152"/>
         </scene>
+        <!--Add Note...-->
+        <scene sceneID="EC6-WU-qhB">
+            <objects>
+                <viewController title="Add Note..." id="o8h-OD-CwY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Oo-MX-aa3"/>
+                        <viewControllerLayoutGuide type="bottom" id="90E-gS-9lj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qBS-Ii-X0a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tN5-IS-7rM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2886" y="-152"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="j7a-7A-Hzg">
             <objects>
-                <navigationController id="Qia-2C-alk" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="Qia-2C-alk" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n0O-Xu-3wl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99131804704666138" green="0.9962812066078186" blue="0.99602764844894409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.99131804704666138" green="0.9962812066078186" blue="0.99602764844894409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Tqx-Vu-1e0">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="GNq-C0-kxd" kind="relationship" relationship="rootViewController" id="Mqd-yC-heI"/>
                     </connections>
@@ -110,7 +155,7 @@
             </objects>
             <point key="canvasLocation" x="1006" y="608"/>
         </scene>
-        <!--Title-->
+        <!--Detail View Controller-->
         <scene sceneID="tfE-cn-bRA">
             <objects>
                 <viewController id="GNq-C0-kxd" customClass="DetailViewController" customModule="Simple_Notes" customModuleProvider="target" sceneMemberID="viewController">
@@ -122,8 +167,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="text" translatesAutoresizingMaskIntoConstraints="NO" id="NSw-rj-F64">
+                                <rect key="frame" x="10" y="115" width="355" height="498"/>
+                                <color key="backgroundColor" red="0.99131804704666138" green="0.9962812066078186" blue="0.99602764844894409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRs-hz-ssK">
-                                <rect key="frame" x="170.5" y="66" width="34" height="21"/>
+                                <rect key="frame" x="170" y="79" width="34" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="IlO-9V-Kdl"/>
                                 </constraints>
@@ -131,52 +183,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-pi-An1">
-                                <rect key="frame" x="4" y="89" width="367" height="574"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYl-Th-CAV">
-                                        <rect key="frame" x="2" y="2" width="32.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="lYl-Th-CAV" firstAttribute="leading" secondItem="M8W-pi-An1" secondAttribute="leading" constant="2" id="0U8-NC-1Dr"/>
-                                    <constraint firstAttribute="bottom" secondItem="lYl-Th-CAV" secondAttribute="bottom" constant="2" id="Aae-7O-aGg"/>
-                                    <constraint firstItem="lYl-Th-CAV" firstAttribute="top" secondItem="M8W-pi-An1" secondAttribute="top" constant="2" id="d61-rW-6m9"/>
-                                    <constraint firstAttribute="trailing" secondItem="lYl-Th-CAV" secondAttribute="trailing" constant="2" id="kuD-mZ-Z2v"/>
-                                </constraints>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3hs-ls-DDM" firstAttribute="top" secondItem="M8W-pi-An1" secondAttribute="bottom" constant="4" id="26k-Hh-XqS"/>
-                            <constraint firstItem="M8W-pi-An1" firstAttribute="top" secondItem="QRs-hz-ssK" secondAttribute="bottom" constant="2" id="FEY-5f-Ea8"/>
+                            <constraint firstAttribute="trailing" secondItem="NSw-rj-F64" secondAttribute="trailing" constant="10" id="8o1-mf-5Jd"/>
+                            <constraint firstItem="QRs-hz-ssK" firstAttribute="top" secondItem="Eh3-ka-BBc" secondAttribute="bottom" constant="15" id="EBt-2k-ivY"/>
                             <constraint firstItem="QRs-hz-ssK" firstAttribute="centerX" secondItem="SJ8-VQ-sn5" secondAttribute="centerX" id="PSl-6Y-DKM"/>
-                            <constraint firstItem="QRs-hz-ssK" firstAttribute="top" secondItem="Eh3-ka-BBc" secondAttribute="bottom" constant="2" id="dMs-AV-KhU"/>
-                            <constraint firstItem="M8W-pi-An1" firstAttribute="leading" secondItem="SJ8-VQ-sn5" secondAttribute="leading" constant="4" id="hVG-Py-Z0v"/>
-                            <constraint firstAttribute="trailing" secondItem="M8W-pi-An1" secondAttribute="trailing" constant="4" id="mvA-iB-3H7"/>
+                            <constraint firstItem="NSw-rj-F64" firstAttribute="top" secondItem="QRs-hz-ssK" secondAttribute="bottom" constant="15" id="Qme-iJ-HrW"/>
+                            <constraint firstItem="3hs-ls-DDM" firstAttribute="top" secondItem="NSw-rj-F64" secondAttribute="bottom" constant="10" id="eFX-k2-E6g"/>
+                            <constraint firstItem="NSw-rj-F64" firstAttribute="leading" secondItem="SJ8-VQ-sn5" secondAttribute="leading" constant="10" id="tA7-0q-3MM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Dh4-u2-NlI"/>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HAB-1n-4V3"/>
+                        <barButtonItem title="date" id="Kd3-fn-qb0">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Fjo-48-bA8"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="Dh4-u2-NlI"/>
                     <connections>
-                        <outlet property="noteTextLabel" destination="lYl-Th-CAV" id="Y7E-nM-SKW"/>
+                        <outlet property="dateFooterItem" destination="Kd3-fn-qb0" id="jL2-aN-2ni"/>
+                        <outlet property="noteTextView" destination="NSw-rj-F64" id="ya7-XI-7Zl"/>
                         <outlet property="noteTitleLabel" destination="QRs-hz-ssK" id="ce3-s5-QfZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klQ-l7-9wY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1960.8" y="607.64617691154433"/>
+            <point key="canvasLocation" x="1961" y="608"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Simple Notes-->
         <scene sceneID="1Uj-5C-Eny">
             <objects>
-                <navigationController id="GCo-hd-rTw" sceneMemberID="viewController">
+                <navigationController title="Simple Notes" toolbarHidden="NO" id="GCo-hd-rTw" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1gb-I9-Fhz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99131804704666138" green="0.9962812066078186" blue="0.99602764844894409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="0.99131804704666138" green="0.9962812066078186" blue="0.99602764844894409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="Yac-vb-ovi">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="CRz-1U-OF2" kind="relationship" relationship="rootViewController" id="zdm-xf-z8S"/>
                     </connections>

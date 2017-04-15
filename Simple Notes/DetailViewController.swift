@@ -10,7 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var noteTitleLabel: UILabel!
-    @IBOutlet weak var noteTextLabel: UILabel!
+    @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var dateFooterItem: UIBarButtonItem!
     
     var textNote: TextNote? {
         didSet {
@@ -21,10 +22,11 @@ class DetailViewController: UIViewController {
     
     func configureView() {
         if let textNote = textNote {
-            if let noteTitleLabel = noteTitleLabel, let noteTextLabel = noteTextLabel {
+            if let noteTitleLabel = noteTitleLabel, let noteTextView = noteTextView{
                 noteTitleLabel.text = textNote.title
-                noteTextLabel.text = textNote.text
-                title = textNote.title
+                noteTextView.text = textNote.text
+                title = textNote.type
+                dateFooterItem.title = "Created " + textNote.getDate()
             }
         }
     }

@@ -2,7 +2,7 @@
 //  Note+CoreDataProperties.swift
 //  Simple Notes
 //
-//  Created by Karl J. Villeneuve on 2017-04-13.
+//  Created by Karl J. Villeneuve on 2017-04-14.
 //  Copyright © 2017 Winnicki. All rights reserved.
 //
 
@@ -17,10 +17,9 @@ extension Note {
     }
 
     @NSManaged public var date: NSDate?
-    @NSManaged public var id: Int16
-    @NSManaged public var passwordProtected: Bool
+    @NSManaged public var id: String?
     @NSManaged public var title: String?
-    @NSManaged public var type: NSObject?
+    @NSManaged public var type: String?
     @NSManaged public var authentication: Authentication?
     
     public func getDate() -> String {

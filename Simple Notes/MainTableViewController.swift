@@ -7,55 +7,186 @@
 //
 
 import UIKit
+import CoreData
 
 extension MainTableViewController: UISearchResultsUpdating {
     @available(iOS 8.0, *)
     public func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchText: searchController.searchBar.text!)
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: scope)
     }
 }
 
-class MainTableViewController: UITableViewController {
+extension MainTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchText: searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        performSegue(withIdentifier: "createNote", sender: nil)
+    }
     
+}
 
+class MainTableViewController: UITableViewController {
+    @IBOutlet weak var noteCountFooter: UIBarButtonItem!
+    
     let searchController = UISearchController(searchResultsController: nil)
     var filteredNotes = [Note]()
     
     var detailViewController: DetailViewController? = nil
-    var notes = [Note]()
+    var noteList = [Note]()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-        
-
+        //self.title = "Simple Notes"
         if let splitViewController = splitViewController {
             let controllers = splitViewController.viewControllers
             detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
         }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
+        configureSearchController()
+        //database test methods (clear database, then generate notes)
+        deleteAllNotes()
+        createNotesForTest()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        searchController.isActive = true
+        //searchController.searchBar.becomeFirstResponder()
+    }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        filteredNotes = notes.filter { note in
-            var result: Bool = false
-            if (note.title?.lowercased().range(of: searchText.lowercased()) != nil){
-                result = true
-            }
-            return result
+    func configureSearchController(){
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.scopeButtonTitles = ["All", "Text", "Picture", "Video", "Audio"]
+        searchController.searchBar.delegate = self
+        searchController.searchBar.setValue("+", forKey: "_cancelButtonText")
+        searchController.searchBar.placeholder = "Search here..."
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func loadNotes() {
+       
+        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        do {
+            self.noteList = try (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext.fetch(fetchRequest)
+             print(noteList)
+        } catch {
+            print(String(format: "Error %@: %d",#file, #line))
+        }
+       noteCountFooter.title = "\(noteList.count)"+" Notes"
+    }
+    
+
+    func createNotesForTest(){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var textNote = TextNote(context: context)
+        textNote.id = UUID().uuidString
+        textNote.title = "Note 1"
+        textNote.text = "A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse."
+        textNote.date = NSDate()
+        textNote.type = "Text"
+        textNote.authentication?.addToNote(textNote)
+        do {
+            //Ask the context object created above to commit unsaved modification of its object to the database
+            try context.save()
+        } catch {
+            print(String(format: "Error %@: %d",#file, #line))
         }
         
+        //Reload the staff members associated to the current manager
+        self.loadNotes()
+        //Refill the table view with data
+        self.tableView.reloadData()
+        
+        textNote = TextNote(context: context)
+        textNote.id = UUID().uuidString
+        textNote.title = "Note 2"
+        textNote.text = "A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse."
+        textNote.date = NSDate()
+        textNote.type = "Text"
+        textNote.authentication?.addToNote(textNote)
+        do {
+            //Ask the context object created above to commit unsaved modification of its object to the database
+            try context.save()
+        } catch {
+            print(String(format: "Error %@: %d",#file, #line))
+        }
+        
+        //Reload the staff members associated to the current manager
+        self.loadNotes()
+        //Refill the table view with data
+        self.tableView.reloadData()
+        
+        textNote = TextNote(context: context)
+        textNote.id = UUID().uuidString
+        textNote.title = "Note 3"
+        textNote.text = "A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse."
+        textNote.date = NSDate()
+        textNote.type = "Text"
+        textNote.authentication?.addToNote(textNote)
+        do {
+            //Ask the context object created above to commit unsaved modification of its object to the database
+            try context.save()
+        } catch {
+            print(String(format: "Error %@: %d",#file, #line))
+        }
+        
+        //Reload the staff members associated to the current manager
+        self.loadNotes()
+        //Refill the table view with data
+        self.tableView.reloadData()
+
+    }
+    
+    func deleteAllNotes() {
+      
+        //Reload the staff members associated to the current manager
+        self.loadNotes()
+        //Refill the table view with data
+        self.tableView.reloadData()
+    
+    //If the managerList is not empty
+    if noteList.count != 0 {
+   
+    //Get the persistent container associated with the App (NSPersistentContainer simplifies the creation and management of the Core Data stack)
+    //Get the context associated to the container to acces managed objects
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    for obj in noteList {//Take each object in the managerList
+    //delete that object from the dabatase
+    context.delete(obj)
+    }
+    do {
+    //Ask the context object created above to commit unsaved modification of its object to the database
+    try context.save()
+    } catch {
+    print(String(format: "Error %@: %d",#file, #line))
+    }
+    //Assign an empty manager array to the managerList
+    self.noteList = [Note]()
+    //Refill the table view with data
+    self.tableView.reloadData()
+   
+    }
+        
+        print(noteList)
+    }
+ 
+
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredNotes = noteList.filter { note in
+            let categoryMatch = (scope == "All") || (note.type == scope)
+            return  categoryMatch && (note.title!.lowercased().range(of: searchText.lowercased()) != nil)
+        }
         tableView.reloadData()
     }
     
@@ -82,7 +213,7 @@ class MainTableViewController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredNotes.count
         }
-        return notes.count
+        return noteList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,7 +222,7 @@ class MainTableViewController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             note = filteredNotes[indexPath.row]
         } else {
-            note = notes[indexPath.row]
+            note = noteList[indexPath.row]
         }
         cell.title?.text = note.title
         cell.date?.text = note.getDate()
@@ -102,7 +233,7 @@ class MainTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-            let note = notes[indexPath.row]
+            let note = noteList[indexPath.row]
             let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 if note.isKind(of: TextNote.self){
                         controller.textNote = note as? TextNote

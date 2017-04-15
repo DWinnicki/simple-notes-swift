@@ -2,7 +2,7 @@
 //  Note+CoreDataClass.swift
 //  Simple Notes
 //
-//  Created by Karl J. Villeneuve on 2017-04-13.
+//  Created by Karl J. Villeneuve on 2017-04-14.
 //  Copyright © 2017 Winnicki. All rights reserved.
 //
 
