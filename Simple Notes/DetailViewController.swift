@@ -9,7 +9,6 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    @IBOutlet weak var noteTitleLabel: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var dateFooterItem: UIBarButtonItem!
     
@@ -22,11 +21,10 @@ class DetailViewController: UIViewController {
     
     func configureView() {
         if let textNote = textNote {
-            if let noteTitleLabel = noteTitleLabel, let noteTextView = noteTextView{
-                noteTitleLabel.text = textNote.title
+            if let noteTextView = noteTextView{
                 noteTextView.text = textNote.text
-                title = textNote.type
-                dateFooterItem.title = "Created " + textNote.getDate()
+                title = textNote.title
+                dateFooterItem.title = "Created " + textNote.getFullDate()
             }
         }
     }

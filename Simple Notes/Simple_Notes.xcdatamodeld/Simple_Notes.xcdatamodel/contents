@@ -9,6 +9,7 @@
     <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" defaultDateTimeInterval="513751380" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="passwordProtected" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" defaultValueString="Undefinied" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="authentication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Authentication" inverseName="note" inverseEntity="Authentication" syncable="YES"/>
@@ -18,7 +19,7 @@
     </entity>
     <elements>
         <element name="Authentication" positionX="-36" positionY="36" width="128" height="105"/>
-        <element name="Note" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Note" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="TextNote" positionX="-54" positionY="-9" width="128" height="30"/>
     </elements>
 </model>

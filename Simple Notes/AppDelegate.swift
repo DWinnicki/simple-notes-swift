@@ -15,6 +15,12 @@ extension UIColor {
     }
 }
 
+extension UIColor {
+    static func noteBlueSelected() -> UIColor {
+        return UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 

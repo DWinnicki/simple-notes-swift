@@ -24,9 +24,12 @@ class CellTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
+        
+        super.setSelected(selected, animated: animated)
+        let selView = UIView()
+        
+        selView.backgroundColor = UIColor( red: 5/255, green: 90/255, blue:223/255, alpha: 0.2 )
+        self.selectedBackgroundView = selView
     }
-
 }

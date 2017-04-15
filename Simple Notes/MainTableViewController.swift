@@ -28,6 +28,7 @@ extension MainTableViewController: UISearchBarDelegate {
     
 }
 
+
 class MainTableViewController: UITableViewController {
     @IBOutlet weak var noteCountFooter: UIBarButtonItem!
     
@@ -40,7 +41,7 @@ class MainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = "Simple Notes"
+        self.title = "Simple Notes"
         if let splitViewController = splitViewController {
             let controllers = splitViewController.viewControllers
             detailViewController = (controllers[controllers.count - 1] as! UINavigationController).topViewController as? DetailViewController
@@ -51,13 +52,14 @@ class MainTableViewController: UITableViewController {
         //database test methods (clear database, then generate notes)
         deleteAllNotes()
         createNotesForTest()
-
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         searchController.isActive = true
         //searchController.searchBar.becomeFirstResponder()
     }
+    
     
     func configureSearchController(){
         searchController.searchResultsUpdater = self
@@ -111,6 +113,7 @@ class MainTableViewController: UITableViewController {
         textNote.text = "A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse.A malesuada suspendisse parturient vivamus turpis erat aliquam vestibulum elit integer adipiscing consectetur cras adipiscing a eu fusce aliquam. A a facilisis aptent neque purus massa eget sem ac adipiscing malesuada per lorem sed ullamcorper consectetur ad condimentum. Eget velit lobortis platea per convallis ad nascetur vestibulum parturient a fringilla taciti vitae sit a venenatis habitant vestibulum vestibulum felis. A torquent semper cras vestibulum habitasse mauris ornare id ut massa posuere leo viverra parturient inceptos tristique pretium convallis quis proin suspendisse."
         textNote.date = NSDate()
         textNote.type = "Text"
+        textNote.passwordProtected = true
         textNote.authentication?.addToNote(textNote)
         do {
             //Ask the context object created above to commit unsaved modification of its object to the database
@@ -227,10 +230,24 @@ class MainTableViewController: UITableViewController {
         cell.title?.text = note.title
         cell.date?.text = note.getDate()
         //Add icons
+        var image = UIImage()
+        if note.isKind(of: TextNote.self){
+            image = UIImage(named: "textNote")!
+        }
+        cell.icon.image = image
+        
+        //Add Locker
+        if note.isPasswordProtected(){
+            cell.passwordIcon.image = UIImage(named: "password")
+        }
         return cell
     }
+    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
             let note = noteList[indexPath.row]
